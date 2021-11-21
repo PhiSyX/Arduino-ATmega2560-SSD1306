@@ -60,9 +60,9 @@ RotaryEncoder::get_position()
 // ------ //
 
 void
-RotaryEncoder::set_position(int pos)
+RotaryEncoder::set_position(const int position)
 {
-  encoder_last_position = pos;
+  encoder_last_position = position;
   encoder.write(encoder_last_position * 4);
 }
 
@@ -87,7 +87,3 @@ RotaryEncoder::read_encoder() const
 {
   return encoder.read() / 4;
 }
-
-// ----- //
-// Event //
-// ----- //

@@ -65,6 +65,13 @@ Layout::get_height() const
   return screen.height();
 }
 
+const unsigned short int
+Layout::get_half_from_str(const String& text) const
+{
+  const auto half_width = get_width() / 2;
+  return (half_width - (text.length() * 2)) - 12;
+}
+
 // ------ //
 // Setter //
 // ------ //
@@ -110,7 +117,7 @@ Layout::set_selected_rect(const byte l,
 // ------- //
 
 const void
-Layout::print(String text, const int when_position_is_at) const
+Layout::print(const String& text, const int when_position_is_at) const
 {
   if (rotary_encoder.get_position() == when_position_is_at) {
     set_text_color(BLACK, WHITE);
@@ -118,6 +125,12 @@ Layout::print(String text, const int when_position_is_at) const
 
   screen.print(text);
   set_text_color(WHITE);
+}
+
+const void
+Layout::locked_print(const String& text) const
+{
+  print(text, -10);
 }
 
 const void

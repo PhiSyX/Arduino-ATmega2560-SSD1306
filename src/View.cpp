@@ -38,7 +38,7 @@ View::cursor_y() const
 // ------- //
 
 View&
-View::line(String text, bool is_selected)
+View::line(const String& text, bool is_selected)
 {
   current_line++;
 
@@ -63,7 +63,7 @@ View::line(String text, bool is_selected)
 }
 
 const View&
-View::title(String text, bool separator) const
+View::title(const String& text, bool separator) const
 {
   const auto half_width = layout.get_width() / 2;
   const auto size_text_x2 = text.length() * 2;

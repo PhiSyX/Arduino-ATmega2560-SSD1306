@@ -19,13 +19,22 @@ void HomeView::display_home()
     view.title("Accueil");
 
     rotary_encoder.define_total(3);
-    view.line("Choix un");
-    view.line("Choix deux");
-    view.line("Choix trois");
+
+    view
+        .line("Choix un")
+        .on_press(Page::VIEW_HOME_CHOICE_ONE);
+
+    view
+        .line("Choix deux")
+        .on_press(Page::VIEW_HOME_CHOICE_TWO);
+
+    view
+        .line("Choix trois")
+        .on_press(Page::VIEW_HOME_CHOICE_THREE);
 
     layout.display();
 
-    if (!rotary_encoder.on_pressed())
+    if (!rotary_encoder.is_pressed())
     {
         return;
     }

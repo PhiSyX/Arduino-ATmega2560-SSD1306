@@ -19,6 +19,23 @@ void RotaryEncoder::setup()
 // Getter //
 // ------ //
 
+bool RotaryEncoder::is_pressed()
+{
+    const unsigned long now{millis()};
+
+    bool ret{false};
+
+    if (read_btn_press() != btn_last_state && (now - btn_state_ms) > 500)
+    {
+        ret = true;
+        btn_state_ms = now;
+    }
+
+    btn_last_state = read_btn_press();
+
+    return ret;
+}
+
 int RotaryEncoder::get_position()
 {
     auto position{read_encoder()};
@@ -70,20 +87,3 @@ long RotaryEncoder::read_encoder()
 // ----- //
 // Event //
 // ----- //
-
-bool RotaryEncoder::on_pressed()
-{
-    const unsigned long now{millis()};
-
-    bool ret{false};
-
-    if (read_btn_press() != btn_last_state && (now - btn_state_ms) > 500)
-    {
-        ret = true;
-        btn_state_ms = now;
-    }
-
-    btn_last_state = read_btn_press();
-
-    return ret;
-}

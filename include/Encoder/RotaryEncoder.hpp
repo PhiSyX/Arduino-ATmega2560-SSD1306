@@ -15,6 +15,7 @@ public: // setup
     void setup();
 
 public: // getters
+    bool is_pressed();
     int get_position();
 
 public: // setters
@@ -24,9 +25,6 @@ public: // setters
 private: // methods
     long read_encoder();
     bool read_btn_press();
-
-public: // events
-    bool on_pressed();
 };
 
 #endif

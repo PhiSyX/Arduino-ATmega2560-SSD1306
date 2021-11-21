@@ -17,11 +17,11 @@ short int View::cursor_y()
 {
     const auto position = rotary_encoder.get_position();
 
-    short int cy = (10 * total_lines) + 4;
+    short int cy = (10 * current_line) + 4;
 
-    if (position > limit)
+    if (position > limit_lines)
     {
-        const auto difference = position - limit;
+        const auto difference = position - limit_lines;
 
         cy -= (10 * difference);
 
@@ -38,16 +38,16 @@ short int View::cursor_y()
 // Méthode //
 // ------- //
 
-void View::line(String text, bool is_selected)
+View &View::line(String text, bool is_selected)
 {
-    total_lines++;
+    current_line++;
 
     const auto cy = cursor_y();
-    const auto pos = rotary_encoder.get_position();
+    const auto position = rotary_encoder.get_position();
 
     const size_t size_text = text.length();
 
-    if (pos == total_lines)
+    if (position == current_line)
     {
         layout.set_selected_circle(0, cy);
         layout.set_selected_rect(7, cy - 1, (size_text * 6 + 7) + 1, cy + 1 + 7);
@@ -59,10 +59,12 @@ void View::line(String text, bool is_selected)
     }
 
     layout.cursor(8, cy);
-    layout.print(text, total_lines);
+    layout.print(text, current_line);
+
+    return *this;
 }
 
-void View::title(String text, bool separator)
+View &View::title(String text, bool separator)
 {
     const auto half_width = layout.get_width() / 2;
     const auto size_text_x2 = text.length() * 2;
@@ -73,9 +75,19 @@ void View::title(String text, bool separator)
     {
         layout.separator();
     }
+
+    return *this;
 }
 
 void View::reset_total()
 {
-    total_lines = 0;
+    current_line = 0;
+}
+
+// ----- //
+// Event //
+// ----- //
+
+void View::on_press(Page page)
+{
 }

@@ -54,6 +54,7 @@ loop()
 
   switch (router.current()) {
     case Page::VIEW_ERROR:
+      view.display_error();
       break;
 
     case Page::VIEW_HOME:

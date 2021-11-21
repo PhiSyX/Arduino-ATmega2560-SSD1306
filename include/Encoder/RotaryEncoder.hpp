@@ -22,7 +22,7 @@ public: // setters
   void set_position(const int position);
   void define_total(const int total);
 
-private: // methods
+public: // methods
   const long read_encoder() const;
   const bool read_btn_press() const;
 };

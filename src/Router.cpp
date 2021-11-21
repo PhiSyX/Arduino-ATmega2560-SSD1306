@@ -22,6 +22,6 @@ Router&
 Router::go(const Page page, const int encoder)
 {
   current_page = page;
-
   rotary_encoder.set_position(encoder);
+  return *this;
 }

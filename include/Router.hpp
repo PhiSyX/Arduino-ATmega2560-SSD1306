@@ -10,6 +10,9 @@ public: // properties
 
 public: // getters
   const Page current() const;
+
+public: // methods
+  Router& go(const Page page, const int encoder = 1);
 };
 
 #endif

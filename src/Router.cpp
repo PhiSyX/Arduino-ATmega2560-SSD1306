@@ -5,8 +5,8 @@
 // Getter //
 // ------ //
 
-Page Router::current()
+const Page
+Router::current() const
 {
-    return current_page;
+  return current_page;
 }
-

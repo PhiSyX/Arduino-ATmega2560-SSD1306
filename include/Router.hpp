@@ -6,10 +6,10 @@
 class Router
 {
 public: // properties
-    Page current_page{Page::VIEW_HOME};
+  Page current_page{ Page::VIEW_HOME };
 
 public: // getters
-    Page current();
+  const Page current() const;
 };
 
 #endif

@@ -4,7 +4,7 @@
 class HomeView
 {
 public: // pages
-    void display_home();
+  const void display_home() const;
 };
 
 #endif

@@ -8,8 +8,8 @@
 
 #include "Encoder/RotaryEncoder.hpp"
 #include "Layout.hpp"
-#include "View.hpp"
 #include "Router.hpp"
+#include "View.hpp"
 
 // --------- //
 // Constante //
@@ -34,32 +34,33 @@ View view;
 Router router;
 RotaryEncoder rotary_encoder;
 
-void setup()
+void
+setup()
 {
-    Serial.begin(SERIAL_BAUD_RATE);
+  Serial.begin(SERIAL_BAUD_RATE);
 
-    rotary_encoder.setup();
-    layout.setup();
+  rotary_encoder.setup();
+  layout.setup();
 }
 
 // --------- //
 // Main loop //
 // --------- //
 
-void loop()
+void
+loop()
 {
-    view.reset_total();
+  view.reset_total();
 
-    switch (router.current())
-    {
+  switch (router.current()) {
     case Page::VIEW_ERROR:
-        break;
+      break;
 
     case Page::VIEW_HOME:
-        view.display_home();
-        break;
+      view.display_home();
+      break;
 
     default:
-        break;
-    }
+      break;
+  }
 }

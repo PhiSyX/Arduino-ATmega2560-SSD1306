@@ -6,25 +6,29 @@
 class Layout
 {
 public: // setup
-    void setup();
+  const void setup() const;
 
 public: // getters
-    const byte get_width();
-    const byte get_height();
+  const byte get_width() const;
+  const byte get_height() const;
 
 public: // setters
-    void set_text_color(const uint16_t fg_color);
-    void set_text_color(const uint16_t fg_color, const uint16_t bg_color);
-    void set_text_size(const uint8_t text_size);
-    void set_selected_circle(const byte x, const byte y);
-    void set_selected_rect(const byte l, const byte t, const byte r, const byte b);
+  const void set_text_color(const uint16_t fg_color) const;
+  const void set_text_color(const uint16_t fg_color,
+                            const uint16_t bg_color) const;
+  const void set_text_size(const uint8_t text_size) const;
+  const void set_selected_circle(const byte x, const byte y) const;
+  const void set_selected_rect(const byte l,
+                               const byte t,
+                               const byte r,
+                               const byte b) const;
 
 public: // methods
-    void clear();
-    void cursor(const byte x, const byte y);
-    void display();
-    void print(String text, const int when_position_is_at = -1);
-    void separator();
+  const void clear() const;
+  const void cursor(const byte x, const byte y) const;
+  const void display() const;
+  const void print(String text, const int when_position_is_at = -1) const;
+  const void separator() const;
 };
 
 #endif

@@ -10,78 +10,82 @@ Encoder encoder(ROTARY_ENCODER_PIN_L, ROTARY_ENCODER_PIN_R);
 // Setup //
 // ----- //
 
-void RotaryEncoder::setup()
+const void
+RotaryEncoder::setup() const
 {
-    pinMode(ROTARY_ENCODER_PIN_P, INPUT_PULLUP);
+  pinMode(ROTARY_ENCODER_PIN_P, INPUT_PULLUP);
 }
 
 // ------ //
 // Getter //
 // ------ //
 
-bool RotaryEncoder::is_pressed()
+bool
+RotaryEncoder::is_pressed()
 {
-    const unsigned long now{millis()};
+  const unsigned long now{ millis() };
 
-    bool ret{false};
+  bool ret{ false };
 
-    if (read_btn_press() != btn_last_state && (now - btn_state_ms) > 500)
-    {
-        ret = true;
-        btn_state_ms = now;
-    }
+  if (read_btn_press() != btn_last_state && (now - btn_state_ms) > 500) {
+    ret = true;
+    btn_state_ms = now;
+  }
 
-    btn_last_state = read_btn_press();
+  btn_last_state = read_btn_press();
 
-    return ret;
+  return ret;
 }
 
-int RotaryEncoder::get_position()
+int
+RotaryEncoder::get_position()
 {
-    auto position{read_encoder()};
+  auto position{ read_encoder() };
 
-    if (position < 0)
-    {
-        set_position(total_count);
-        position = total_count;
-    }
+  if (position < 0) {
+    set_position(total_count);
+    position = total_count;
+  }
 
-    if (position > total_count)
-    {
-        set_position(0);
-        position = 0;
-    }
+  if (position > total_count) {
+    set_position(0);
+    position = 0;
+  }
 
-    return position;
+  return position;
 }
 
 // ------ //
 // Setter //
 // ------ //
 
-void RotaryEncoder::set_position(int pos)
+void
+RotaryEncoder::set_position(int pos)
 {
-    encoder_last_position = pos;
-    encoder.write(encoder_last_position * 4);
+  encoder_last_position = pos;
+  encoder.write(encoder_last_position * 4);
 }
 
-void RotaryEncoder::define_total(const int total)
+void
+RotaryEncoder::define_total(const int total)
 {
-    total_count = total;
+  total_count = total;
 }
 
 // ------- //
 // Méthode //
 // ------- //
 
-bool RotaryEncoder::read_btn_press()
+const bool
+RotaryEncoder::read_btn_press() const
 {
-    return !digitalRead(ROTARY_ENCODER_PIN_P);
+  return !digitalRead(ROTARY_ENCODER_PIN_P);
 }
 
-long RotaryEncoder::read_encoder()
+const long
+RotaryEncoder::read_encoder() const
 {
-    return encoder.read() / 4;
+  return encoder.read() / 4;
 }
 
 // ----- //

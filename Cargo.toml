@@ -1,0 +1,37 @@
+[package]
+name = "arduino-atmega2560-ssd1306"
+version = "0.1.0"
+authors = ["PhiSyX <738010+PhiSyX@users.noreply.github.com>"]
+edition = "2018"
+license = "MPL"
+
+[[bin]]
+name = "rustuino"
+path = "rust/main.rs"
+test = false
+bench = false
+
+[dependencies]
+ssd1306 = "0.7.0"
+embedded-hal = "0.2.6"
+embedded-graphics = "0.7.1"
+ufmt = "0.1.0"
+nb = "1.0.0"
+panic-halt = "0.2.0"
+
+[dependencies.arduino-hal]
+git = "https://github.com/rahix/avr-hal"
+rev = "f84c0dff774c2292bc932b670955165161ecc7d1"
+features = ["arduino-mega2560"]
+
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"

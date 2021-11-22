@@ -5,9 +5,11 @@
 #include "View.hpp"
 #include "Encoder/RotaryEncoder.hpp"
 #include "Layout.hpp"
+#include "Router.hpp"
 
-extern Layout layout;
 extern RotaryEncoder rotary_encoder;
+extern Layout layout;
+extern Router router;
 
 // ------ //
 // Getter //
@@ -33,6 +35,17 @@ View::cursor_y() const
   return cy;
 }
 
+// ------ //
+// Setter //
+// ------ //
+
+void
+View::define_limit_lines(const byte limit)
+{
+  limit_lines = limit;
+  rotary_encoder.define_total(limit_lines);
+}
+
 // ------- //
 // Méthode //
 // ------- //
@@ -41,6 +54,8 @@ View&
 View::line(const String& text, bool is_selected)
 {
   current_line++;
+
+  Line line{ text };
 
   const auto cy = cursor_y();
   const auto position = rotary_encoder.get_position();
@@ -89,4 +104,14 @@ View::reset_total()
 
 void
 View::on_press(Page page)
-{}
+{
+  if (total_press == 0 && !router.has_back()) {
+    total_press++;
+  }
+
+  if (rotary_encoder.get_position() == total_press) {
+    router.go(page);
+  }
+
+  total_press++;
+}

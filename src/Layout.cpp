@@ -47,6 +47,12 @@ const void
 Layout::display() const
 {
   screen.display();
+
+  if (!rotary_encoder.is_pressed()) {
+    return;
+  }
+  
+  // todo 
 }
 
 // ------ //

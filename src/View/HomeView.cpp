@@ -19,17 +19,10 @@ HomeView::display_home() const
 
   view.title("Accueil");
 
-  rotary_encoder.define_total(3);
-
-  view.line("Choix un").on_press(Page::VIEW_HOME_CHOICE_ONE);
+  view.define_limit_lines(3);
+  view.line("Choix un").on_press(Page::VIEW_ERROR);
   view.line("Choix deux").on_press(Page::VIEW_HOME_CHOICE_TWO);
   view.line("Choix trois").on_press(Page::VIEW_HOME_CHOICE_THREE);
 
   layout.display();
-
-  if (!rotary_encoder.is_pressed()) {
-    return;
-  }
-
-  // comportement particulier lorsqu'on presse le bouton?
 }

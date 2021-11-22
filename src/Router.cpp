@@ -1,3 +1,7 @@
+// ------ //
+// Header //
+// ------ //
+
 #include "Router.hpp"
 #include "Encoder/RotaryEncoder.hpp"
 #include "View.hpp"
@@ -7,6 +11,18 @@ extern RotaryEncoder rotary_encoder;
 // ------ //
 // Getter //
 // ------ //
+
+const bool
+Router::has_back() const
+{
+  return back_page > Page::VIEW_ERROR;
+}
+
+const bool
+Router::has_next() const
+{
+  return next_page > Page::VIEW_ERROR;
+}
 
 const Page
 Router::current() const
